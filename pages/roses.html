@@ -4,10 +4,418 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Рози - Разсадник Кърнаре</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e2d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(76, 140, 74, 0.9);
+            border-radius: 25px;
+            padding: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #4c8c4a;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4c8c4a 0%, #6ba368 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        .back-nav {
+            background: rgba(76, 140, 74, 0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .category-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-title {
+            color: #4c8c4a;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Product Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(76, 140, 74, 0.2);
+            border-color: #4c8c4a;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e8f5e8, #d4e6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #4c8c4a;
+            position: relative;
+        }
+
+        .product-image::after {
+            content: "📷 Add Photo";
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+            background: rgba(76, 140, 74, 0.8);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 10px;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: #4c8c4a;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .product-variety {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .product-description {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            color: #4c8c4a;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .product-availability {
+            background: #e8f5e8;
+            color: #4c8c4a;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .order-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #4c8c4a, #6ba368);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .order-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 140, 74, 0.4);
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-details {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e2d, #4c8c4a);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
 </head>
 <body>
-    <h1>🌹 Roses Page Works!</h1>
-    <p>This is a test page for roses.</p>
-    <a href="../index.html">← Back to Main Page</a>
-</body>
-</html>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn active" onclick="switchLanguage('bg')">БГ</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content" id="header-en">
+                <h1>🌹 Roses Collection</h1>
+                <p class="subtitle">Premium roses for your garden</p>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content active" id="header-bg">
+                <h1>🌹 Колекция Рози</h1>
+                <p class="subtitle">Премиум рози за вашата градина</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Back Navigation -->
+    <nav class="back-nav">
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content" id="nav-en">
+                <a href="../index.html" class="back-btn">
+                    ← Back to Main Page
+                </a>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content active" id="nav-bg">
+                <a href="../index.html" class="back-btn">
+                    ← Назад към главната страница
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Roses Section -->
+        <section class="category-section">
+            <!-- English Content -->
+            <div class="lang-content" id="roses-en">
+                <h2 class="category-title">🌹 Our Rose Collection</h2>
+                
+                <div class="products-grid">
+                    <!-- Red Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Red Roses</h3>
+                            <p class="product-variety">Classic varieties: Mr. Lincoln, Chrysler Imperial</p>
+                            <p class="product-description">Beautiful deep red roses perfect for romantic gardens. Hardy varieties that bloom throughout the season with exceptional fragrance.</p>
+                            <div class="product-details">
+                                <span class="product-price">15-20 BGN</span>
+                                <span class="product-availability">In Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Red Roses', '15-20 BGN')">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Pink Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌸</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Pink Roses</h3>
+                            <p class="product-variety">Varieties: Queen Elizabeth, Pink Peace</p>
+                            <p class="product-description">Elegant pink roses that add softness and charm to any garden. Disease-resistant varieties with long-lasting blooms.</p>
+                            <div class="product-details">
+                                <span class="product-price">15-22 BGN</span>
+                                <span class="product-availability">In Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Pink Roses', '15-22 BGN')">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- White Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🤍</div>
+                        <div class="product-info">
+                            <h3 class="product-name">White Roses</h3>
+                            <p class="product-variety">Varieties: Iceberg, White Masterpiece</p>
+                            <p class="product-description">Pure white roses symbolizing elegance and purity. Perfect for wedding gardens and formal landscapes.</p>
+                            <div class="product-details">
+                                <span class="product-price">16-25 BGN</span>
+                                <span class="product-availability">In Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('White Roses', '16-25 BGN')">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Climbing Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌿🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Climbing Roses</h3>
+                            <p class="product-variety">Varieties: Don Juan, New Dawn</p>
+                            <p class="product-description">Beautiful climbing roses perfect for fences, pergolas, and walls. Vigorous growth with abundant blooms.</p>
+                            <div class="product-details">
+                                <span class="product-price">20-30 BGN</span>
+                                <span class="product-availability">Limited Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Climbing Roses', '20-30 BGN')">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Yellow Roses -->
+                    <div class="product-card">
+                        <div class="product-image">💛</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Yellow Roses</h3>
+                            <p class="product-variety">Varieties: Gold Medal, Sunbright</p>
+                            <p class="product-description">Bright yellow roses that bring sunshine to your garden. Excellent for cutting and long-lasting arrangements.</p>
+                            <div class="product-details">
+                                <span class="product-price">18-24 BGN</span>
+                                <span class="product-availability">In Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Yellow Roses', '18-24 BGN')">Order Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Garden Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌹🌿</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Garden Rose Mix</h3>
+                            <p class="product-variety">Mixed varieties for garden borders</p>
+                            <p class="product-description">A beautiful mix of different colored roses perfect for creating stunning garden borders and displays.</p>
+                            <div class="product-details">
+                                <span class="product-price">12-18 BGN</span>
+                                <span class="product-availability">In Stock</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Garden Rose Mix', '12-18 BGN')">Order Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bulgarian Content -->
+            <div class="lang-content active" id="roses-bg">
+                <h2 class="category-title">🌹 Нашата колекция рози</h2>
+                
+                <div class="products-grid">
+                    <!-- Red Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Червени рози</h3>
+                            <p class="product-variety">Класически сортове: Мистър Линкълн, Крайслер Империал</p>
+                            <p class="product-description">Красиви тъмночервени рози, перфект
