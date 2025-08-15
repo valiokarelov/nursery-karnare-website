@@ -256,6 +256,71 @@
             }
         }
 
+        /* Coming Soon Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid #4c8c4a;
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .modal-title {
+            color: #4c8c4a;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .modal-text {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close {
+            background: linear-gradient(135deg, #4c8c4a, #6ba368);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .modal-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 140, 74, 0.4);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -276,20 +341,20 @@
 <body>
     <!-- Language Toggle -->
     <div class="language-toggle">
-        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="switchLanguage('bg')">БГ</button>
+        <button class="lang-btn" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn active" onclick="switchLanguage('bg')">БГ</button>
     </div>
 
     <!-- Header -->
     <header>
         <div class="container">
             <!-- English Content -->
-            <div class="lang-content active" id="header-en">
+            <div class="lang-content" id="header-en">
                 <h1>🌿 Nursery Karnare</h1>
                 <p class="subtitle">Premium Plants & Garden Solutions</p>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="header-bg">
+            <div class="lang-content active" id="header-bg">
                 <h1>🌿 Разсадник Кърнаре</h1>
                 <p class="subtitle">Премиум растения и градински решения</p>
             </div>
@@ -301,17 +366,17 @@
         <div class="container">
             <ul>
                 <!-- English Navigation -->
-                <div class="lang-content active" id="nav-en">
+                <div class="lang-content" id="nav-en">
                     <li><a href="#plants">Our Plants</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#areas">Service Areas</a></li>
+                    <li><a href="javascript:void(0)" onclick="showComingSoon()">About Us</a></li>
+                    <li><a href="javascript:void(0)" onclick="showComingSoon()">Service Areas</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </div>
                 <!-- Bulgarian Navigation -->
-                <div class="lang-content" id="nav-bg">
+                <div class="lang-content active" id="nav-bg">
                     <li><a href="#plants">Нашите растения</a></li>
-                    <li><a href="#about">За нас</a></li>
-                    <li><a href="#areas">Области на обслужване</a></li>
+                    <li><a href="javascript:void(0)" onclick="showComingSoon()">За нас</a></li>
+                    <li><a href="javascript:void(0)" onclick="showComingSoon()">Области на обслужване</a></li>
                     <li><a href="#contact">Контакти</a></li>
                 </div>
             </ul>
@@ -322,7 +387,7 @@
         <!-- Plants Section -->
         <section id="plants">
             <!-- English Content -->
-            <div class="lang-content active" id="plants-en">
+            <div class="lang-content" id="plants-en">
                 <h2>🌱 Our Premium Plants</h2>
                 <div class="plants-grid">
                     <div class="plant-card">
@@ -358,7 +423,7 @@
                 </div>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="plants-bg">
+            <div class="lang-content active" id="plants-bg">
                 <h2>🌱 Нашите премиум растения</h2>
                 <div class="plants-grid">
                     <div class="plant-card">
@@ -398,7 +463,7 @@
         <!-- About Section -->
         <section id="about">
             <!-- English Content -->
-            <div class="lang-content active" id="about-en">
+            <div class="lang-content" id="about-en">
                 <h2>🏢 About Nursery Karnare</h2>
                 <p>Welcome to Nursery Karnare, your trusted partner in creating beautiful, sustainable gardens and landscapes. Located in the heart of Karnare, we specialize in providing high-quality plants, trees, and gardening solutions to customers across Bulgaria.</p>
                 <br>
@@ -407,7 +472,7 @@
                 <p>We pride ourselves on exceptional customer service, expert advice, and competitive pricing. Our team of horticultural experts is always ready to help you choose the right plants for your specific needs and growing conditions.</p>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="about-bg">
+            <div class="lang-content active" id="about-bg">
                 <h2>🏢 За Разсадник Кърнаре</h2>
                 <p>Добре дошли в Разсадник Кърнаре, вашият доверен партньор в създаването на красиви, устойчиви градини и ландшафти. Разположени в сърцето на Кърнаре, ние се специализираме в предоставянето на висококачествени растения, дървета и градински решения на клиенти в цяла България.</p>
                 <br>
@@ -420,7 +485,7 @@
         <!-- Service Areas Section -->
         <section id="areas">
             <!-- English Content -->
-            <div class="lang-content active" id="areas-en">
+            <div class="lang-content" id="areas-en">
                 <h2>📍 Our Service Areas in Bulgaria</h2>
                 <p style="text-align: center; margin-bottom: 2rem;">We proudly serve customers across these regions in Bulgaria:</p>
                 <div class="service-areas">
@@ -451,7 +516,7 @@
                 </div>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="areas-bg">
+            <div class="lang-content active" id="areas-bg">
                 <h2>📍 Нашите области на обслужване в България</h2>
                 <p style="text-align: center; margin-bottom: 2rem;">С гордост обслужваме клиенти в тези региони на България:</p>
                 <div class="service-areas">
@@ -486,7 +551,7 @@
         <!-- Contact Section -->
         <section id="contact">
             <!-- English Content -->
-            <div class="lang-content active" id="contact-en">
+            <div class="lang-content" id="contact-en">
                 <h2>📞 Contact Us</h2>
                 <p style="text-align: center; margin-bottom: 2rem;">Ready to transform your garden? Contact us today to place your order!</p>
                 <div class="contact-info">
@@ -523,7 +588,7 @@
                 </div>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="contact-bg">
+            <div class="lang-content active" id="contact-bg">
                 <h2>📞 Свържете се с нас</h2>
                 <p style="text-align: center; margin-bottom: 2rem;">Готови сте да преобразите градината си? Свържете се с нас днес, за да направите поръчка!</p>
                 <div class="contact-info">
@@ -562,15 +627,35 @@
         </section>
     </div>
 
+    <!-- Coming Soon Modal -->
+    <div class="modal-overlay" id="comingSoonModal">
+        <div class="modal-content">
+            <!-- English Content -->
+            <div class="lang-content" id="modal-en">
+                <span class="modal-icon">🚧</span>
+                <h2 class="modal-title">Coming Soon!</h2>
+                <p class="modal-text">We're working hard to bring you this section. In the meantime, feel free to browse our plants and contact us directly for any questions!</p>
+                <button class="modal-close" onclick="closeComingSoon()">Close</button>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content active" id="modal-bg">
+                <span class="modal-icon">🚧</span>
+                <h2 class="modal-title">Очаквайте скоро!</h2>
+                <p class="modal-text">Работим усилено, за да ви предоставим тази секция. Междувременно, разгледайте нашите растения и се свържете с нас директно за въпроси!</p>
+                <button class="modal-close" onclick="closeComingSoon()">Затвори</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <!-- English Content -->
-            <div class="lang-content active" id="footer-en">
+            <div class="lang-content" id="footer-en">
                 <p>&copy; 2025 Nursery Karnare. All rights reserved. | Growing dreams, nurturing nature.</p>
             </div>
             <!-- Bulgarian Content -->
-            <div class="lang-content" id="footer-bg">
+            <div class="lang-content active" id="footer-bg">
                 <p>&copy; 2025 Разсадник Кърнаре. Всички права запазени. | Отглеждаме мечти, грижим се за природата.</p>
             </div>
         </div>
@@ -583,16 +668,9 @@
                 el.classList.remove('active');
             });
             
-            // Show selected language content
-            document.querySelectorAll(`#${document.querySelectorAll('[id$="-' + lang + '"]').length > 0 ? '' : ''}[id$="-${lang}"], [id*="-${lang}"]`).forEach(el => {
-                if (el.id.includes('-' + lang)) {
-                    el.classList.add('active');
-                }
-            });
-            
-            // Show content for selected language
+            // Show content for selected language (including modal)
             const elementsToShow = [
-                'header', 'nav', 'plants', 'about', 'areas', 'contact', 'footer'
+                'header', 'nav', 'plants', 'about', 'areas', 'contact', 'footer', 'modal'
             ];
             
             elementsToShow.forEach(section => {
@@ -606,11 +684,45 @@
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            
+            // Find the clicked button and make it active
+            const clickedBtn = document.querySelector(`[onclick="switchLanguage('${lang}')"]`);
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
             
             // Update document language
             document.documentElement.lang = lang;
         }
+
+        // Set Bulgarian as default language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // The page loads with Bulgarian as default since we set the active classes
+            document.documentElement.lang = 'bg';
+        });
+
+        function showComingSoon() {
+            document.getElementById('comingSoonModal').style.display = 'flex';
+        }
+
+        function closeComingSoon() {
+            document.getElementById('comingSoonModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('comingSoonModal');
+            if (event.target === modal) {
+                closeComingSoon();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeComingSoon();
+            }
+        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
