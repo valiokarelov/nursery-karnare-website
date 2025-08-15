@@ -418,4 +418,160 @@
                         <div class="product-info">
                             <h3 class="product-name">Червени рози</h3>
                             <p class="product-variety">Класически сортове: Мистър Линкълн, Крайслер Империал</p>
-                            <p class="product-description">Красиви тъмночервени рози, перфект
+                            <p class="product-description">Красиви тъмночервени рози, перфектни за романтични градини. Издръжливи сортове, които цъфтят през целия сезон с изключителен аромат.</p>
+                            <div class="product-details">
+                                <span class="product-price">15-20 лв.</span>
+                                <span class="product-availability">На склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Червени рози', '15-20 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+
+                    <!-- Pink Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌸</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Розови рози</h3>
+                            <p class="product-variety">Сортове: Кралица Елизабет, Розов мир</p>
+                            <p class="product-description">Елегантни розови рози, които добавят нежност и чар към всяка градина. Устойчиви на болести сортове с дълготрайни цветове.</p>
+                            <div class="product-details">
+                                <span class="product-price">15-22 лв.</span>
+                                <span class="product-availability">На склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Розови рози', '15-22 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+
+                    <!-- White Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🤍</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Бели рози</h3>
+                            <p class="product-variety">Сортове: Айсберг, Бял шедьовър</p>
+                            <p class="product-description">Чисто бели рози, символизиращи елегантност и чистота. Перфектни за сватбени градини и формални ландшафти.</p>
+                            <div class="product-details">
+                                <span class="product-price">16-25 лв.</span>
+                                <span class="product-availability">На склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Бели рози', '16-25 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+
+                    <!-- Climbing Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌿🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Катерливи рози</h3>
+                            <p class="product-variety">Сортове: Дон Хуан, Нова зора</p>
+                            <p class="product-description">Красиви катерливи рози, перфектни за огради, перголи и стени. Бурен растеж с обилни цветове.</p>
+                            <div class="product-details">
+                                <span class="product-price">20-30 лв.</span>
+                                <span class="product-availability">Ограничен склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Катерливи рози', '20-30 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+
+                    <!-- Yellow Roses -->
+                    <div class="product-card">
+                        <div class="product-image">💛</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Жълти рози</h3>
+                            <p class="product-variety">Сортове: Златен медал, Слънчев блясък</p>
+                            <p class="product-description">Ярки жълти рози, които внасят слънчева светлина във вашата градина. Отлични за рязане и дълготрайни аранжировки.</p>
+                            <div class="product-details">
+                                <span class="product-price">18-24 лв.</span>
+                                <span class="product-availability">На склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Жълти рози', '18-24 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+
+                    <!-- Garden Roses -->
+                    <div class="product-card">
+                        <div class="product-image">🌹🌿</div>
+                        <div class="product-info">
+                            <h3 class="product-name">Градински микс рози</h3>
+                            <p class="product-variety">Смесени сортове за градински граници</p>
+                            <p class="product-description">Красив микс от различно цветни рози, перфектен за създаване на зашеметяващи градински граници и композиции.</p>
+                            <div class="product-details">
+                                <span class="product-price">12-18 лв.</span>
+                                <span class="product-availability">На склад</span>
+                            </div>
+                            <button class="order-btn" onclick="orderPlant('Градински микс рози', '12-18 лв.')">Поръчай сега</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content" id="footer-en">
+                <p>&copy; 2025 Nursery Karnare. All rights reserved. | Contact: Biser Pavlov +359 88 862 2768</p>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content active" id="footer-bg">
+                <p>&copy; 2025 Разсадник Кърнаре. Всички права запазени. | Контакт: Бисер Павлов +359 88 862 2768</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show content for selected language
+            const elementsToShow = [
+                'header', 'nav', 'roses', 'footer'
+            ];
+            
+            elementsToShow.forEach(section => {
+                const element = document.getElementById(`${section}-${lang}`);
+                if (element) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Find the clicked button and make it active
+            const clickedBtn = document.querySelector(`[onclick="switchLanguage('${lang}')"]`);
+            if (clickedBtn) {
+                clickedBtn.classList.add('active');
+            }
+            
+            // Update document language
+            document.documentElement.lang = lang;
+        }
+
+        function orderPlant(plantName, price) {
+            const message = `Здравейте! Искам да поръчам: ${plantName} (${price}). Моля, свържете се с мен за повече детайли.`;
+            const phoneNumber = '+359888622768';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Try WhatsApp first, fallback to SMS
+            if (window.innerWidth <= 768) {
+                window.open(whatsappUrl, '_blank');
+            } else {
+                // For desktop, show contact info
+                alert(`За поръчка на ${plantName} (${price}), моля свържете се с:\n\nБисер Павлов\nТелефон: +359 88 862 2768\nИмейл: pbisser@yahoo.com`);
+            }
+        }
+
+        // Set Bulgarian as default language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.documentElement.lang = 'bg';
+        });
+    </script>
+</body>
+</html>
