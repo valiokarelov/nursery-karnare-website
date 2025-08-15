@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursery Karnare - Premium Plants & Garden Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #2c3e2d;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(76, 140, 74, 0.9);
+            border-radius: 25px;
+            padding: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #4c8c4a;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4c8c4a 0%, #6ba368 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(76, 140, 74, 0.95);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #4c8c4a;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        /* Plants Grid */
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .plant-card {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(76, 140, 74, 0.2);
+            border-color: #4c8c4a;
+        }
+
+        .plant-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .plant-name {
+            font-size: 1.4rem;
+            color: #4c8c4a;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .plant-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Service Areas */
+        .service-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .area-card {
+            background: linear-gradient(135deg, #4c8c4a, #6ba368);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(76, 140, 74, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 5px solid #4c8c4a;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #4c8c4a;
+            margin-bottom: 1rem;
+        }
+
+        .contact-title {
+            font-size: 1.3rem;
+            color: #4c8c4a;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e2d, #4c8c4a);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .plants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+        <button class="lang-btn" onclick="switchLanguage('bg')">БГ</button>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content active" id="header-en">
+                <h1>🌿 Nursery Karnare</h1>
+                <p class="subtitle">Premium Plants & Garden Solutions</p>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="header-bg">
+                <h1>🌿 Разсадник Кърнаре</h1>
+                <p class="subtitle">Премиум растения и градински решения</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <!-- English Navigation -->
+                <div class="lang-content active" id="nav-en">
+                    <li><a href="#plants">Our Plants</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#areas">Service Areas</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </div>
+                <!-- Bulgarian Navigation -->
+                <div class="lang-content" id="nav-bg">
+                    <li><a href="#plants">Нашите растения</a></li>
+                    <li><a href="#about">За нас</a></li>
+                    <li><a href="#areas">Области на обслужване</a></li>
+                    <li><a href="#contact">Контакти</a></li>
+                </div>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Plants Section -->
+        <section id="plants">
+            <!-- English Content -->
+            <div class="lang-content active" id="plants-en">
+                <h2>🌱 Our Premium Plants</h2>
+                <div class="plants-grid">
+                    <div class="plant-card">
+                        <span class="plant-icon">🌹</span>
+                        <div class="plant-name">Roses</div>
+                        <div class="plant-description">Beautiful fragrant roses in various colors. Perfect for gardens and special occasions. Hardy varieties that thrive in Bulgarian climate.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌳</span>
+                        <div class="plant-name">Fruit Trees</div>
+                        <div class="plant-description">Apple, pear, cherry, and plum trees. High-quality saplings that produce abundant, delicious fruit for years to come.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌿</span>
+                        <div class="plant-name">Herbs</div>
+                        <div class="plant-description">Fresh culinary and medicinal herbs including basil, rosemary, thyme, and traditional Bulgarian herbs.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌺</span>
+                        <div class="plant-name">Flowering Plants</div>
+                        <div class="plant-description">Colorful seasonal flowers and perennials. Create stunning displays that bloom throughout the growing season.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🥬</span>
+                        <div class="plant-name">Vegetables</div>
+                        <div class="plant-description">Healthy vegetable seedlings including tomatoes, peppers, cucumbers, and leafy greens. Grow your own fresh produce!</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌲</span>
+                        <div class="plant-name">Evergreens</div>
+                        <div class="plant-description">Pine, spruce, and fir trees for landscaping. Create beautiful year-round greenery and natural privacy screens.</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="plants-bg">
+                <h2>🌱 Нашите премиум растения</h2>
+                <div class="plants-grid">
+                    <div class="plant-card">
+                        <span class="plant-icon">🌹</span>
+                        <div class="plant-name">Рози</div>
+                        <div class="plant-description">Красиви ароматни рози в различни цветове. Перфектни за градини и специални поводи. Издръжливи сортове, които процъфтяват в българския климат.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌳</span>
+                        <div class="plant-name">Овощни дървета</div>
+                        <div class="plant-description">Ябълки, круши, череши и сливи. Висококачествени фиданки, които дават обилни и вкусни плодове с години.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌿</span>
+                        <div class="plant-name">Билки</div>
+                        <div class="plant-description">Свежи кулинарни и лечебни билки включително босилек, розмарин, мащерка и традиционни български билки.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌺</span>
+                        <div class="plant-name">Цветящи растения</div>
+                        <div class="plant-description">Цветни сезонни цветя и многогодишни растения. Създайте зашеметяващи композиции, които цъфтят през цялия сезон.</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🥬</span>
+                        <div class="plant-name">Зеленчуци</div>
+                        <div class="plant-description">Здравословни зеленчукови разсади включително домати, чушки, краставици и листни зеленчуци. Отгледайте си собствени свежи продукти!</div>
+                    </div>
+                    <div class="plant-card">
+                        <span class="plant-icon">🌲</span>
+                        <div class="plant-name">Вечнозелени</div>
+                        <div class="plant-description">Бор, смърч и ела за озеленяване. Създайте красива целогодишна зеленина и естествени защитни прегради.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <!-- English Content -->
+            <div class="lang-content active" id="about-en">
+                <h2>🏢 About Nursery Karnare</h2>
+                <p>Welcome to Nursery Karnare, your trusted partner in creating beautiful, sustainable gardens and landscapes. Located in the heart of Karnare, we specialize in providing high-quality plants, trees, and gardening solutions to customers across Bulgaria.</p>
+                <br>
+                <p>Our passion for plants drives us to source only the finest specimens, carefully selected for their quality, health, and adaptability to the Bulgarian climate. Whether you're a professional landscaper, an avid gardener, or just starting your green journey, we have the perfect plants to bring your vision to life.</p>
+                <br>
+                <p>We pride ourselves on exceptional customer service, expert advice, and competitive pricing. Our team of horticultural experts is always ready to help you choose the right plants for your specific needs and growing conditions.</p>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="about-bg">
+                <h2>🏢 За Разсадник Кърнаре</h2>
+                <p>Добре дошли в Разсадник Кърнаре, вашият доверен партньор в създаването на красиви, устойчиви градини и ландшафти. Разположени в сърцето на Кърнаре, ние се специализираме в предоставянето на висококачествени растения, дървета и градински решения на клиенти в цяла България.</p>
+                <br>
+                <p>Страстта ни към растенията ни мотивира да търсим само най-добрите екземпляри, внимателно подбрани заради качеството, здравето и приспособимостта им към българския климат. Независимо дали сте професионален ландшафтен архитект, запален градинар или просто започвате зеленото си пътешествие, имаме перфектните растения, за да осъществите вашата визия.</p>
+                <br>
+                <p>Гордеем се с изключителното обслужване на клиентите, експертните съвети и конкурентните цени. Нашият екип от експерти по градинарство винаги е готов да ви помогне да изберете правилните растения за вашите специфични нужди и условия на отглеждане.</p>
+            </div>
+        </section>
+
+        <!-- Service Areas Section -->
+        <section id="areas">
+            <!-- English Content -->
+            <div class="lang-content active" id="areas-en">
+                <h2>📍 Our Service Areas in Bulgaria</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">We proudly serve customers across these regions in Bulgaria:</p>
+                <div class="service-areas">
+                    <div class="area-card">
+                        <h3>Sofia Region</h3>
+                        <p>Sofia, Pernik, Bozhurishte, Kostinbrod</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Plovdiv Region</h3>
+                        <p>Plovdiv, Asenovgrad, Karlovo, Kalofer</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Varna Region</h3>
+                        <p>Varna, Devnya, Aksakovo, Byala</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Burgas Region</h3>
+                        <p>Burgas, Sozopol, Nessebar, Pomorie</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Stara Zagora Region</h3>
+                        <p>Stara Zagora, Kazanlak, Nova Zagora</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Veliko Tarnovo Region</h3>
+                        <p>Veliko Tarnovo, Gorna Oryahovitsa, Arbanasi</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="areas-bg">
+                <h2>📍 Нашите области на обслужване в България</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">С гордост обслужваме клиенти в тези региони на България:</p>
+                <div class="service-areas">
+                    <div class="area-card">
+                        <h3>Софийска област</h3>
+                        <p>София, Перник, Божурище, Костинброд</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Пловдивска область</h3>
+                        <p>Пловдив, Асеновград, Карлово, Калофер</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Варненска область</h3>
+                        <p>Варна, Девня, Аксаково, Бяла</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Бургаска область</h3>
+                        <p>Бургас, Созопол, Несебър, Поморие</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Старозагорска область</h3>
+                        <p>Стара Загора, Казанлък, Нова Загора</p>
+                    </div>
+                    <div class="area-card">
+                        <h3>Великотърновска област</h3>
+                        <p>Велико Търново, Горна Оряховица, Арбанаси</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <!-- English Content -->
+            <div class="lang-content active" id="contact-en">
+                <h2>📞 Contact Us</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Ready to transform your garden? Contact us today to place your order!</p>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">👨‍🌾</div>
+                        <div class="contact-title">Contact Person</div>
+                        <div class="contact-details">Biser Pavlov</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-title">Phone Orders</div>
+                        <div class="contact-details">+359 88 862 2768</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-title">Email</div>
+                        <div class="contact-details">pbisser@yahoo.com</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-title">Location</div>
+                        <div class="contact-details">Karnare, Bulgaria</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-title">Working Hours</div>
+                        <div class="contact-details">Mon-Fri: 8:00-18:00<br>Sat-Sun: 9:00-16:00</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🚚</div>
+                        <div class="contact-title">Delivery</div>
+                        <div class="contact-details">Free delivery for orders over 100 BGN<br>Same day delivery available</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="contact-bg">
+                <h2>📞 Свържете се с нас</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Готови сте да преобразите градината си? Свържете се с нас днес, за да направите поръчка!</p>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">👨‍🌾</div>
+                        <div class="contact-title">Лице за контакт</div>
+                        <div class="contact-details">Бисер Павлов</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-title">Телефонни поръчки</div>
+                        <div class="contact-details">+359 88 862 2768</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-title">Имейл</div>
+                        <div class="contact-details">pbisser@yahoo.com</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-title">Местоположение</div>
+                        <div class="contact-details">Кърнаре, България</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-title">Работно време</div>
+                        <div class="contact-details">Пон-Пет: 8:00-18:00<br>Съб-Нед: 9:00-16:00</div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🚚</div>
+                        <div class="contact-title">Доставка</div>
+                        <div class="contact-details">Безплатна доставка за поръчки над 100 лв.<br>Доставка в същия ден възможна</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <!-- English Content -->
+            <div class="lang-content active" id="footer-en">
+                <p>&copy; 2025 Nursery Karnare. All rights reserved. | Growing dreams, nurturing nature.</p>
+            </div>
+            <!-- Bulgarian Content -->
+            <div class="lang-content" id="footer-bg">
+                <p>&copy; 2025 Разсадник Кърнаре. Всички права запазени. | Отглеждаме мечти, грижим се за природата.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.querySelectorAll(`#${document.querySelectorAll('[id$="-' + lang + '"]').length > 0 ? '' : ''}[id$="-${lang}"], [id*="-${lang}"]`).forEach(el => {
+                if (el.id.includes('-' + lang)) {
+                    el.classList.add('active');
+                }
+            });
+            
+            // Show content for selected language
+            const elementsToShow = [
+                'header', 'nav', 'plants', 'about', 'areas', 'contact', 'footer'
+            ];
+            
+            elementsToShow.forEach(section => {
+                const element = document.getElementById(`${section}-${lang}`);
+                if (element) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update document language
+            document.documentElement.lang = lang;
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
