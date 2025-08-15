@@ -135,6 +135,7 @@
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             border: 2px solid transparent;
+            cursor: pointer;
         }
 
         .plant-card:hover {
@@ -160,6 +161,17 @@
             color: #666;
             font-size: 0.95rem;
             line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .plant-price {
+            color: #4c8c4a;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: rgba(76, 140, 74, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
         }
 
         /* Service Areas */
@@ -390,35 +402,41 @@
             <div class="lang-content" id="plants-en">
                 <h2>🌱 Our Premium Plants</h2>
                 <div class="plants-grid">
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/roses.html'">
                         <span class="plant-icon">🌹</span>
                         <div class="plant-name">Roses</div>
                         <div class="plant-description">Beautiful fragrant roses in various colors. Perfect for gardens and special occasions. Hardy varieties that thrive in Bulgarian climate.</div>
+                        <div class="plant-price">From 15 BGN</div>
                     </div>
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/fruit-trees.html'">
                         <span class="plant-icon">🌳</span>
                         <div class="plant-name">Fruit Trees</div>
                         <div class="plant-description">Apple, pear, cherry, and plum trees. High-quality saplings that produce abundant, delicious fruit for years to come.</div>
+                        <div class="plant-price">From 25 BGN</div>
                     </div>
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/herbs.html'">
                         <span class="plant-icon">🌿</span>
                         <div class="plant-name">Herbs</div>
                         <div class="plant-description">Fresh culinary and medicinal herbs including basil, rosemary, thyme, and traditional Bulgarian herbs.</div>
+                        <div class="plant-price">From 8 BGN</div>
                     </div>
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/flowering-plants.html'">
                         <span class="plant-icon">🌺</span>
                         <div class="plant-name">Flowering Plants</div>
                         <div class="plant-description">Colorful seasonal flowers and perennials. Create stunning displays that bloom throughout the growing season.</div>
+                        <div class="plant-price">From 12 BGN</div>
                     </div>
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/vegetables.html'">
                         <span class="plant-icon">🥬</span>
                         <div class="plant-name">Vegetables</div>
                         <div class="plant-description">Healthy vegetable seedlings including tomatoes, peppers, cucumbers, and leafy greens. Grow your own fresh produce!</div>
+                        <div class="plant-price">From 5 BGN</div>
                     </div>
-                    <div class="plant-card">
+                    <div class="plant-card" onclick="window.location.href='pages/evergreens.html'">
                         <span class="plant-icon">🌲</span>
                         <div class="plant-name">Evergreens</div>
                         <div class="plant-description">Pine, spruce, and fir trees for landscaping. Create beautiful year-round greenery and natural privacy screens.</div>
+                        <div class="plant-price">From 30 BGN</div>
                     </div>
                 </div>
             </div>
